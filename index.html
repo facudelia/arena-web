@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARENA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="preloader">
+      <img src="arenabeige.png" alt="ARENA">
+    </div>
+    <header>
+      <nav>
+        <div class="logo">
+        <img src="arenalabbeige.png" alt="ARENA" class="logo-desktop" />
+        <img src="abordo.png" alt="ARENA" class="logo-mobile" />        </div>
+        <button class="hamburger">☰</button>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre">Sobre Nosotros</a></li>
+          <li class="has-dropdown">
+          <a href="#servicios">Servicios <span class="dropdown-arrow">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="branding.html">Branding</a></li>
+            <li><a href="paid-media.html">Paid Media</a></li>
+            <li><a href="social-media.html">Social Media</a></li>
+            <li><a href="product-content.html">Product Content</a></li>
+            <li><a href="event-coverage.html">Event Coverage</a></li>
+            <li><a href="ugc-content.html">UGC content</a></li>
+          </ul>
+        </li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="inicio">
+    <div class="inicio-inner">
+      <div class="hero-text">
+        <h1>Construimos<br><em>marcas que</em><br>dejan huella.</h1>      
+        <hr class="hero-divider">
+        <p>Como la arena, nos movemos y evolucionamos con cada marca, combinando estrategia, creatividad y contenido para conectar de verdad y trascender.</p>
+        <a href="#servicios" class="btn-cta">Conocé más →</a>
+      </div>
+    </div>
+  </section>
+  <div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+    </div>
+    <div class="marquee-group">
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+      <span>ARENALAB</span>
+    </div>
+  </div>
+</div>   
+   <section id="sobre">
+    <div class="sobre-card reveal">
+      <div class="sobre-titulo">
+        <h2>Sobre<br><em>nosotros</em></h2>
+      </div>
+      <div class="sobre-divider"></div>
+      <p>ARENA nació mucho antes de ser una agencia: en los veranos junto al mar, entre charlas que siempre traían nuevas ideas. Con el tiempo elegimos caminos distintos —Marketing y Publicidad— que terminaron complementándose a la perfección. Cuando llegó el momento de crear algo juntas, supimos que el nombre tenía que representar ese lugar que siempre nos unió.</p>
+    </div>
+  </section>
+  <section id="servicios">
+  <h2 class="servicios-titulo reveal">SERVICIOS</h2>
+    <div class="services-slider">
+    <div class="services-track">
+    <div class="services-group">
+    <a href="branding.html" class="service-card" style="background-image: url('branding.jpg');">
+      <span>Branding</span>
+    </a>
+    <a href="paid-media.html" class="service-card" style="background-image: url('paid-media.jpg');">
+      <span>Paid Media</span>
+    </a>
+    <a href="social-media.html" class="service-card" style="background-image: url('social-media.jpg');">      <span>Social Media</span>
+    </a>
+    <a href="product-content.html" class="service-card" style="background-image: url('product-content.jpg');">
+      <span>Product Content</span>
+    </a>
+    <a href="event-coverage.html" class="service-card" style="background-image: url('event-coverage.jpg');">
+      <span>Event Coverage</span>
+    </a>
+    <a href="ugc-content.html" class="service-card" style="background-image: url('ugc-content.jpg');">      <span>UGC content</span>
+    </a>
+  </div>
+    </div>
+  </div>
+</section>
+<section id="contacto">
+<div class="contacto-card reveal">
+  <h2 id="contacto-titulo"></h2>
+  <hr class="contacto-divider">
+  <form action="https://formspree.io/f/xrpzapqv" method="POST" class="contacto-form">
+    <input type="hidden" name="subject" value="Nuevo contacto desde la web de ARENA" />
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" placeholder="Ingresá tu nombre" name="nombre" required />
+      </div>
+      <div class="form-group">
+        <label>Correo</label>
+        <input type="email" placeholder="ejemplo@correo.com" name="email" required />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="Ingresá tu teléfono (opcional)" name="telefono" />
+      </div>
+      <div class="form-group">
+        <label>Servicios</label>
+        <select name="servicio">
+          <option value="Consulta general">Consulta general</option>
+          <option value="Branding">Branding</option>
+          <option value="Paid Media">Paid Media</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Product Content">Product Content</option>
+          <option value="Event Coverage">Event Coverage</option>
+          <option value="UGC content">UGC content</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Mensaje</label>
+      <textarea placeholder="Contanos sobre tu proyecto" name="mensaje"></textarea>
+    </div>
+    <button type="submit">Enviar consulta</button>
+  </form>
+</div>
+</section>
+<div class="scroll-spacer"></div>
+<script type="module" src="script.js"></script>
+  </body>
+</html>
