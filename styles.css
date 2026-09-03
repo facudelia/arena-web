@@ -877,6 +877,11 @@ nav {
     font-size: 28px;
   }
 
+  .btn-cta-light {
+    color: #ebe2d9;
+    text-decoration-color: #ebe2d9;
+  }
+
   .service-about {
     padding: 60px 0;
   }
