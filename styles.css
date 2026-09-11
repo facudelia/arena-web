@@ -666,24 +666,29 @@ nav {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px 40px;
-  max-width: 800px;
+  column-gap: 48px;
+  max-width: 760px;
+  border-top: 1px solid rgba(111, 43, 58, 0.18);
 }
 
 .service-features li {
   position: relative;
-  padding-left: 26px;
+  padding: 16px 0 16px 20px;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.4;
   color: #3a3a3a;
+  border-bottom: 1px solid rgba(111, 43, 58, 0.18);
 }
 
 .service-features li::before {
-  content: "—";
+  content: "";
   position: absolute;
   left: 0;
-  color: #6f2b3a;
-  font-weight: 600;
+  top: 24px;
+  width: 6px;
+  height: 6px;
+  background-color: #DDC9A3;
+  border-radius: 1px;
 }
 
 .service-cta-wrap {
