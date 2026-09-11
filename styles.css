@@ -81,6 +81,74 @@ body {
   transform: translateY(0);
 }
 
+.hero-anim {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.hero-anim.play {
+  animation: heroFadeUp 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-anim.play {
+    animation: none;
+  }
+
+  .btn-cta,
+  .service-card,
+  .service-card::before,
+  .service-card span {
+    transition: none;
+  }
+}
+
+/* Textura sutil (misma foto del hero) para los bloques bordó planos */
+.sobre-card,
+.contacto-card,
+.service-about,
+.service-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sobre-card::before,
+.contacto-card::before,
+.service-about::before,
+.service-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sobre-card > *,
+.contacto-card > *,
+.service-about > *,
+.service-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
 header {
   position: fixed;
   top: 20px;
@@ -275,6 +343,12 @@ nav {
   border-radius: 50px;
   font-size: 16px;
   margin-top: 20px;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
 }
 
 #servicios {
@@ -328,6 +402,12 @@ nav {
   text-decoration: none;
   overflow: hidden;
   flex-shrink: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.035);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
 }
 
 .service-card::before {
@@ -338,6 +418,12 @@ nav {
   width: 100%;
   height: 100%;
   background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 .service-card span {
@@ -348,6 +434,11 @@ nav {
   font-weight: 600;
   padding-bottom: 25px;
   z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.service-card:hover span {
+  transform: translateY(-4px);
 }
 
 #sobre {

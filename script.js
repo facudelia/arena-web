@@ -1,8 +1,12 @@
 const preloader = document.querySelector(".preloader");
+const heroAnimElements = document.querySelectorAll(".hero-anim");
 
 window.addEventListener("load", function() {
   setTimeout(function() {
     preloader.style.opacity = "0";
+    heroAnimElements.forEach(function(el) {
+      el.classList.add("play");
+    });
     setTimeout(function() {
       preloader.style.display = "none";
     }, 600);
