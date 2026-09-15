@@ -51,18 +51,46 @@ if (slider) {
   let dragged = false;
   let startX;
   let startScrollLeft;
+  let lastX = 0;
+  let lastTime = 0;
+  let velocity = 0;
+  let momentumId = null;
+
+  function stopMomentum() {
+    if (momentumId) {
+      cancelAnimationFrame(momentumId);
+      momentumId = null;
+    }
+  }
+
+  function applyMomentum() {
+    velocity *= 0.95;
+    if (Math.abs(velocity) < 0.5) {
+      momentumId = null;
+      return;
+    }
+    slider.scrollLeft -= velocity;
+    momentumId = requestAnimationFrame(applyMomentum);
+  }
 
   slider.addEventListener("mousedown", function(e) {
+    stopMomentum();
     isDown = true;
     dragged = false;
     startX = e.pageX;
     startScrollLeft = slider.scrollLeft;
+    lastX = e.pageX;
+    lastTime = performance.now();
+    velocity = 0;
   });
 
   window.addEventListener("mouseup", function() {
     if (!isDown) return;
     isDown = false;
     slider.classList.remove("dragging");
+    if (Math.abs(velocity) > 0.5) {
+      momentumId = requestAnimationFrame(applyMomentum);
+    }
   });
 
   slider.addEventListener("mousemove", function(e) {
@@ -75,6 +103,14 @@ if (slider) {
     }
 
     slider.scrollLeft = startScrollLeft - dx;
+
+    const now = performance.now();
+    const dt = now - lastTime;
+    if (dt > 0) {
+      velocity = ((e.pageX - lastX) / dt) * 16.67;
+    }
+    lastX = e.pageX;
+    lastTime = now;
   });
 
   // Native touch scrolling already handles swipe/drag and keyboard focus
