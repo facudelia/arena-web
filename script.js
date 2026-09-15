@@ -107,7 +107,8 @@ if (slider) {
     const now = performance.now();
     const dt = now - lastTime;
     if (dt > 0) {
-      velocity = ((e.pageX - lastX) / dt) * 16.67;
+      const instantVelocity = ((e.pageX - lastX) / dt) * 16.67;
+      velocity = velocity * 0.7 + instantVelocity * 0.3;
     }
     lastX = e.pageX;
     lastTime = now;
