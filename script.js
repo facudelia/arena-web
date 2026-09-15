@@ -17,7 +17,8 @@ const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 
 hamburger.addEventListener("click", function() {
-  navLinks.classList.toggle("active");
+  const isOpen = navLinks.classList.toggle("active");
+  hamburger.setAttribute("aria-expanded", String(isOpen));
 });
 
 const dropdownParent = document.querySelector(".has-dropdown");
@@ -36,6 +37,7 @@ const links = document.querySelectorAll(".nav-links a");
 links.forEach(function(link) {
   link.addEventListener("click", function() {
     navLinks.classList.remove("active");
+    hamburger.setAttribute("aria-expanded", "false");
   });
 });
 
@@ -124,9 +126,6 @@ const observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
       entry.target.classList.add("visible");
-      if (entry.target.classList.contains("contacto-card")) {
-        escribirTitulo();
-      }
     }
   });
 }, {
@@ -220,22 +219,4 @@ if (contactoForm) {
         submitBtn.textContent = "Enviar consulta";
       });
   });
-}
-
-const contactoTitulo = document.querySelector("#contacto-titulo");
-const textoContacto = "Contacto";
-let yaEscribio = false;
-
-function escribirTitulo() {
-  if (yaEscribio) return;
-  yaEscribio = true;
-
-  let i = 0;
-  const intervalo = setInterval(function() {
-    contactoTitulo.textContent += textoContacto[i];
-    i++;
-    if (i >= textoContacto.length) {
-      clearInterval(intervalo);
-    }
-  }, 100);
 }
