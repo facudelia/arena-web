@@ -22,12 +22,12 @@ Sitio web institucional desarrollado para **ARENA**, una agencia de publicidad y
 - **Menú hamburguesa** para mobile
 - **Preloader** con animación de logo al cargar la página
 - **Marquee animado** (texto en loop infinito) en el hero y en las páginas de servicio
-- **Slider de servicios drag-to-scroll**: 6 tarjetas de servicios que se arrastran con mouse y touch, implementado a mano con eventos `mousedown`/`mousemove`/`touchmove` y `transform: translateX()` (sin librerías de carrusel)
+- **Slider de servicios con scroll nativo**: 6 tarjetas recorribles con drag del mouse (con inercia al soltar), swipe táctil nativo del navegador, o teclado — el foco trae automáticamente las tarjetas fuera de pantalla a la vista (sin librerías de carrusel)
 - **6 páginas individuales de servicio** (Branding, Paid Media, Social Media, Product Content, Event Coverage, UGC Content), cada una con su propio hero, diagrama de conceptos y servicios relacionados
 - **Scroll reveal**: animaciones de aparición (fade + movimiento) al hacer scroll, con `IntersectionObserver`
-- **Scroll centrado personalizado**: función que calcula la posición del elemento y lo centra verticalmente en pantalla al navegar desde el menú
-- **Efecto de tipeo** (typing effect) en el título de la sección Contacto, disparado cuando la sección entra en el viewport
-- **Formulario de contacto funcional** conectado a Formspree (nombre, correo, teléfono, selector de servicio, mensaje)
+- **Scroll centrado personalizado**: función que calcula la posición del elemento y lo centra verticalmente en pantalla al navegar desde el menú, tanto en clicks dentro de la página como al llegar desde otra página con el hash en la URL
+- **Formulario de contacto** conectado a Formspree vía `fetch` (nombre, correo, teléfono, selector de servicio, mensaje), con validación propia (mensajes de error inline, foco automático en el primer campo inválido) y confirmación de envío in-page, sin redirigir a Formspree
+- **Accesibilidad**: skip link, landmark `<main>`, foco visible y navegable por teclado en todo el sitio (incluido el slider), `aria-label`/`aria-expanded` en controles icon-only, y animaciones que respetan `prefers-reduced-motion`
 - **Diseño responsive** completo: menú, slider, formulario y tipografía adaptados a mobile
 
 ## Estructura del proyecto
