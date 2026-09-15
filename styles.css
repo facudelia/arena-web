@@ -26,6 +26,24 @@ header :focus-visible,
   outline-color: #ebe2d9;
 }
 
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  z-index: 1000;
+  background-color: #ebe2d9;
+  color: #6f2b3a;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 20px;
+}
+
 h1, h2, h3 {
   font-family: 'Fraunces', serif;
 }
@@ -112,6 +130,10 @@ body {
   .service-card::before,
   .service-card span {
     transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
   }
 }
 
@@ -558,6 +580,10 @@ nav {
   font-size: 16px;
   padding: 10px 0;
   font-family: inherit;
+}
+
+.contacto-form select {
+  background-color: #6f2b3a;
 }
 
 .contacto-form ::placeholder {

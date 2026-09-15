@@ -3,6 +3,9 @@ const heroAnimElements = document.querySelectorAll(".hero-anim");
 
 window.addEventListener("load", function() {
   setTimeout(function() {
+    if (destinos[window.location.hash]) {
+      irADestino(destinos[window.location.hash], "instant");
+    }
     preloader.style.opacity = "0";
     heroAnimElements.forEach(function(el) {
       el.classList.add("play");
@@ -94,12 +97,12 @@ function getOffsetTop(el) {
   return top;
 }
 
-function centrarEnPantalla(elemento) {
+function centrarEnPantalla(elemento, behavior) {
   const totalTop = getOffsetTop(elemento);
   const scrollAmount = totalTop - (window.innerHeight - elemento.offsetHeight) / 2;
   window.scrollTo({
     top: scrollAmount,
-    behavior: "smooth"
+    behavior: behavior || "smooth"
   });
 }
 
@@ -109,13 +112,17 @@ const destinos = {
   "#servicios": document.querySelector("#servicios")
 };
 
+function irADestino(el, behavior) {
+  el.classList.add("visible");
+  centrarEnPantalla(el, behavior);
+}
+
 Object.keys(destinos).forEach(function(href) {
   document.querySelectorAll('a[href="' + href + '"]').forEach(function(link) {
     link.addEventListener("click", function(e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
-      const el = destinos[href];
-      el.classList.add("visible");
-      centrarEnPantalla(el);
+      irADestino(destinos[href]);
     });
   });
 });

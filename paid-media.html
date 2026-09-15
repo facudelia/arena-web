@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a href="#main" class="skip-link">Saltar al contenido</a>
     <div class="preloader">
-      <img src="arenabeige.png" alt="ARENA">
+      <img src="arenabeige.png" alt="ARENA" width="790" height="316">
     </div>
     <header>
       <nav>
@@ -24,7 +25,7 @@
           <li><a href="index.html#inicio">Inicio</a></li>
           <li><a href="index.html#sobre">Sobre Nosotros</a></li>
           <li class="has-dropdown">
-          <a href="index.html#servicios">Servicios <span class="dropdown-arrow">▾</span></a>
+          <a href="index.html#servicios">Servicios <span class="dropdown-arrow" aria-hidden="true">▾</span></a>
           <ul class="dropdown">
             <li><a href="branding.html">Branding</a></li>
             <li><a href="paid-media.html">Paid Media</a></li>
@@ -38,6 +39,7 @@
         </ul>
       </nav>
     </header>
+    <main id="main">
 
     <section class="service-hero" style="background-image: url('paid-media.jpg');">
       <div class="service-hero-inner">
@@ -146,6 +148,7 @@
       </div>
     </section>
 
+    </main>
     <script type="module" src="script.js"></script>
   </body>
 </html>
