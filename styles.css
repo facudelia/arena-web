@@ -366,20 +366,31 @@ nav {
 }
 
 .services-slider {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   width: 100%;
   position: relative;
   z-index: 5;
   margin-top: -6vw;
+  cursor: grab;
+}
+
+.services-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.services-slider:active {
+  cursor: grabbing;
+}
+
+.services-slider.dragging * {
+  user-select: none;
 }
 
 .services-track {
   display: flex;
-  cursor: grab;
-}
-
-.services-track:active {
-  cursor: grabbing;
 }
 
 .services-group {
@@ -390,6 +401,8 @@ nav {
 }
 
 .service-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   position: relative;
   width: 250px;
   height: 350px;
@@ -565,6 +578,11 @@ nav {
   color: #6f2b3a;
   border-radius: 50px;
   padding: 15px 50px;
+}
+
+.contacto-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .scroll-spacer {

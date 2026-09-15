@@ -39,74 +39,48 @@ links.forEach(function(link) {
   });
 });
 
-const track = document.querySelector(".services-track");
+const slider = document.querySelector(".services-slider");
 
-if (track) {
+if (slider) {
   let isDown = false;
+  let dragged = false;
   let startX;
-  let scrollLeft;
+  let startScrollLeft;
 
-  track.addEventListener("mousedown", function(e) {
+  slider.addEventListener("mousedown", function(e) {
     isDown = true;
+    dragged = false;
     startX = e.pageX;
-    scrollLeft = getTranslateX(track);
+    startScrollLeft = slider.scrollLeft;
   });
 
-  track.addEventListener("mouseup", function() {
+  window.addEventListener("mouseup", function() {
+    if (!isDown) return;
     isDown = false;
+    slider.classList.remove("dragging");
   });
 
-  track.addEventListener("mouseleave", function() {
-    isDown = false;
-  });
-
-  track.addEventListener("mousemove", function(e) {
+  slider.addEventListener("mousemove", function(e) {
     if (!isDown) return;
     const dx = e.pageX - startX;
-    let newX = scrollLeft + dx;
 
-    const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
+    if (Math.abs(dx) > 3) {
+      dragged = true;
+      slider.classList.add("dragging");
+    }
 
-    if (newX > 0) newX = 0;
-    if (newX < -maxScroll) newX = -maxScroll;
-
-    track.style.transform = `translateX(${newX}px)`;
+    slider.scrollLeft = startScrollLeft - dx;
   });
 
-  track.addEventListener("touchstart", function(e) {
-    isDown = true;
-    startX = e.touches[0].clientX;
-    scrollLeft = getTranslateX(track);
-  });
+  // Native touch scrolling already handles swipe/drag and keyboard focus
+  // brings off-screen cards into view for free — no custom touch handlers needed.
 
-  track.addEventListener("touchend", function() {
-    isDown = false;
-  });
-
-  track.addEventListener("touchcancel", function() {
-    isDown = false;
-  });
-
-  track.addEventListener("touchmove", function(e) {
-    if (!isDown) return;
-    e.preventDefault();
-
-    const dx = e.touches[0].clientX - startX;
-    let newX = scrollLeft + dx;
-
-    const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-
-    if (newX > 0) newX = 0;
-    if (newX < -maxScroll) newX = -maxScroll;
-
-    track.style.transform = `translateX(${newX}px)`;
-  }, { passive: false });
-}
-
-function getTranslateX(el) {
-  const style = window.getComputedStyle(el);
-  const matrix = new DOMMatrixReadOnly(style.transform);
-  return matrix.m41;
+  slider.addEventListener("click", function(e) {
+    if (dragged) {
+      e.preventDefault();
+      dragged = false;
+    }
+  }, true);
 }
 
 function getOffsetTop(el) {
@@ -162,6 +136,18 @@ const observer = new IntersectionObserver(function(entries) {
 revealElements.forEach(function(el) {
   observer.observe(el);
 });
+
+const contactoForm = document.querySelector(".contacto-form");
+
+if (contactoForm) {
+  contactoForm.addEventListener("submit", function() {
+    const submitBtn = contactoForm.querySelector('button[type="submit"]');
+    if (!submitBtn || submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    submitBtn.dataset.originalText = submitBtn.textContent;
+    submitBtn.textContent = "Enviando…";
+  });
+}
 
 const contactoTitulo = document.querySelector("#contacto-titulo");
 const textoContacto = "Contacto";

@@ -113,22 +113,22 @@
     <input type="hidden" name="subject" value="Nuevo contacto desde la web de ARENA" />
     <div class="form-row">
       <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" placeholder="Ingresá tu nombre" name="nombre" required />
+        <label for="contacto-nombre">Nombre</label>
+        <input type="text" id="contacto-nombre" placeholder="Ej: Juan Pérez" name="nombre" autocomplete="name" required />
       </div>
       <div class="form-group">
-        <label>Correo</label>
-        <input type="email" placeholder="ejemplo@correo.com" name="email" required />
+        <label for="contacto-email">Correo</label>
+        <input type="email" id="contacto-email" placeholder="ejemplo@correo.com" name="email" autocomplete="email" spellcheck="false" required />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
-        <label>Teléfono</label>
-        <input type="tel" placeholder="Ingresá tu teléfono (opcional)" name="telefono" />
+        <label for="contacto-telefono">Teléfono (opcional)</label>
+        <input type="tel" id="contacto-telefono" placeholder="Ej: +54 9 11 1234-5678" name="telefono" autocomplete="tel" inputmode="tel" />
       </div>
       <div class="form-group">
-        <label>Servicios</label>
-        <select name="servicio">
+        <label for="contacto-servicio">Servicios</label>
+        <select name="servicio" id="contacto-servicio">
           <option value="Consulta general">Consulta general</option>
           <option value="Branding">Branding</option>
           <option value="Paid Media">Paid Media</option>
@@ -140,8 +140,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Mensaje</label>
-      <textarea placeholder="Contanos sobre tu proyecto" name="mensaje"></textarea>
+      <label for="contacto-mensaje">Mensaje</label>
+      <textarea id="contacto-mensaje" placeholder="Contanos sobre tu proyecto…" name="mensaje"></textarea>
     </div>
     <button type="submit">Enviar consulta</button>
   </form>
