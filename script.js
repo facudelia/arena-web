@@ -140,12 +140,85 @@ revealElements.forEach(function(el) {
 const contactoForm = document.querySelector(".contacto-form");
 
 if (contactoForm) {
-  contactoForm.addEventListener("submit", function() {
-    const submitBtn = contactoForm.querySelector('button[type="submit"]');
-    if (!submitBtn || submitBtn.disabled) return;
+  const submitBtn = contactoForm.querySelector('button[type="submit"]');
+  const statusEl = document.querySelector("#form-status");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const fields = [
+    {
+      input: document.querySelector("#contacto-nombre"),
+      error: document.querySelector("#contacto-nombre-error"),
+      validate: function(value) {
+        return value.trim() ? "" : "Ingresá tu nombre.";
+      }
+    },
+    {
+      input: document.querySelector("#contacto-email"),
+      error: document.querySelector("#contacto-email-error"),
+      validate: function(value) {
+        if (!value.trim()) return "Ingresá tu correo.";
+        if (!emailRegex.test(value.trim())) return "Ingresá un correo válido.";
+        return "";
+      }
+    }
+  ];
+
+  function showFieldError(field, message) {
+    field.error.textContent = message;
+    if (message) {
+      field.input.setAttribute("aria-invalid", "true");
+    } else {
+      field.input.removeAttribute("aria-invalid");
+    }
+  }
+
+  fields.forEach(function(field) {
+    field.input.addEventListener("blur", function() {
+      showFieldError(field, field.validate(field.input.value));
+    });
+  });
+
+  function setStatus(message, variant) {
+    statusEl.textContent = message;
+    statusEl.className = "form-status" + (variant ? " form-status--" + variant : "");
+  }
+
+  contactoForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let firstInvalid = null;
+    fields.forEach(function(field) {
+      const message = field.validate(field.input.value);
+      showFieldError(field, message);
+      if (message && !firstInvalid) firstInvalid = field.input;
+    });
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    if (submitBtn.disabled) return;
     submitBtn.disabled = true;
-    submitBtn.dataset.originalText = submitBtn.textContent;
     submitBtn.textContent = "Enviando…";
+    setStatus("");
+
+    fetch(contactoForm.action, {
+      method: "POST",
+      body: new FormData(contactoForm),
+      headers: { Accept: "application/json" }
+    })
+      .then(function(response) {
+        if (!response.ok) throw new Error("request-failed");
+        contactoForm.reset();
+        contactoForm.hidden = true;
+        setStatus("¡Gracias! Tu consulta fue enviada, te vamos a contactar a la brevedad.", "success");
+      })
+      .catch(function() {
+        setStatus("No pudimos enviar tu consulta. Probá de nuevo en unos minutos.", "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar consulta";
+      });
   });
 }
 

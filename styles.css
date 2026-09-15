@@ -565,6 +565,18 @@ nav {
   opacity: 0.6;
 }
 
+.contacto-form input[aria-invalid="true"] {
+  border-bottom-color: #ff8a80;
+}
+
+.field-error {
+  display: block;
+  min-height: 18px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #ff8a80;
+}
+
 .contacto-form select option {
   background-color: #6f2b3a;
   color: #ebe2d9;
@@ -583,6 +595,25 @@ nav {
 .contacto-form button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.form-status {
+  margin: 20px auto 0;
+  max-width: 480px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status--success {
+  color: #a8e0a0;
+}
+
+.form-status--error {
+  color: #ff8a80;
 }
 
 .scroll-spacer {

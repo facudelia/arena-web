@@ -109,16 +109,18 @@
 <div class="contacto-card reveal">
   <h2 id="contacto-titulo"></h2>
   <hr class="contacto-divider">
-  <form action="https://formspree.io/f/xrpzapqv" method="POST" class="contacto-form">
+  <form action="https://formspree.io/f/xrpzapqv" method="POST" class="contacto-form" novalidate>
     <input type="hidden" name="subject" value="Nuevo contacto desde la web de ARENA" />
     <div class="form-row">
       <div class="form-group">
         <label for="contacto-nombre">Nombre</label>
-        <input type="text" id="contacto-nombre" placeholder="Ej: Juan Pérez" name="nombre" autocomplete="name" required />
+        <input type="text" id="contacto-nombre" placeholder="Ej: Juan Pérez" name="nombre" autocomplete="name" aria-describedby="contacto-nombre-error" required />
+        <span class="field-error" id="contacto-nombre-error" aria-live="polite"></span>
       </div>
       <div class="form-group">
         <label for="contacto-email">Correo</label>
-        <input type="email" id="contacto-email" placeholder="ejemplo@correo.com" name="email" autocomplete="email" spellcheck="false" required />
+        <input type="email" id="contacto-email" placeholder="ejemplo@correo.com" name="email" autocomplete="email" spellcheck="false" aria-describedby="contacto-email-error" required />
+        <span class="field-error" id="contacto-email-error" aria-live="polite"></span>
       </div>
     </div>
     <div class="form-row">
@@ -145,6 +147,7 @@
     </div>
     <button type="submit">Enviar consulta</button>
   </form>
+  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 </div>
 </section>
 <div class="scroll-spacer"></div>
